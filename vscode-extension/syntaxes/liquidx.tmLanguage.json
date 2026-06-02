@@ -1,0 +1,57 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "LiquidX",
+  "scopeName": "text.html.liquidx",
+  "patterns": [
+    { "include": "#liquidx-tags" },
+    { "include": "text.html.basic" }
+  ],
+  "repository": {
+    "liquidx-tags": {
+      "patterns": [
+        {
+          "name": "meta.tag.liquidx.lx-if",
+          "begin": "\\{%-?\\s*lx-if\\s+",
+          "end": "-?%\\}",
+          "beginCaptures": {
+            "0": { "name": "punctuation.definition.tag.begin.liquid" }
+          },
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.tag.end.liquid" }
+          },
+          "patterns": [
+            {
+              "name": "keyword.control.liquidx.lx-if",
+              "match": "\\blx-if\\b"
+            },
+            {
+              "name": "string.quoted.double.liquid",
+              "match": "\"[^\"]*\""
+            }
+          ]
+        },
+        {
+          "name": "meta.tag.liquidx.map-assign",
+          "begin": "\\{%-?\\s*assign\\s+\\w+\\s*=\\s*\\{",
+          "end": "\\}\\s*-?%\\}",
+          "beginCaptures": {
+            "0": { "name": "punctuation.definition.tag.begin.liquid" }
+          },
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.tag.end.liquid" }
+          },
+          "patterns": [
+            {
+              "name": "string.quoted.double.liquid",
+              "match": "\"[^\"]*\""
+            },
+            {
+              "name": "punctuation.separator.key-value.liquid",
+              "match": ":"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

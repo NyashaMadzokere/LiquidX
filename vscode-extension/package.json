@@ -1,0 +1,134 @@
+{
+  "name": "liquidx",
+  "displayName": "LiquidX",
+  "description": "Compile LiquidX syntax to Shopify Liquid in VS Code",
+  "version": "0.1.0",
+  "publisher": "nyasha-madzokere",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Formatters",
+    "Other"
+  ],
+  "keywords": [
+    "shopify",
+    "liquid",
+    "liquidx",
+    "theme"
+  ],
+  "activationEvents": [
+    "onLanguage:liquid",
+    "onLanguage:liquidx"
+  ],
+  "main": "./src/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "liquidx",
+        "aliases": [
+          "LiquidX",
+          "liquidx"
+        ],
+        "extensions": [
+          ".lx.liquid"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "liquidx",
+        "scopeName": "text.html.liquidx",
+        "path": "./syntaxes/liquidx.tmLanguage.json"
+      },
+      {
+        "scopeName": "liquidx.injection",
+        "path": "./syntaxes/liquidx-injection.json",
+        "injectTo": [
+          "text.html.liquid",
+          "text.html.liquidx"
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "command": "liquidx.compile",
+        "title": "LiquidX: Compile Active File",
+        "icon": "$(play)"
+      },
+      {
+        "command": "liquidx.compileAndShow",
+        "title": "LiquidX: Compile and Open Output"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "liquidx.compile",
+          "when": "resourceLangId == liquid || resourceLangId == liquidx",
+          "group": "liquidx@1"
+        },
+        {
+          "command": "liquidx.compileAndShow",
+          "when": "resourceLangId == liquid || resourceLangId == liquidx",
+          "group": "liquidx@2"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "liquidx.compile",
+          "when": "resourceExtname == .liquid",
+          "group": "liquidx@1"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "liquidx.compile",
+        "key": "ctrl+shift+l",
+        "mac": "cmd+shift+l",
+        "when": "editorTextFocus && (resourceLangId == liquid || resourceLangId == liquidx)"
+      }
+    ],
+    "configuration": {
+      "title": "LiquidX",
+      "properties": {
+        "liquidx.compileOnSave": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically compile .liquid files when saved."
+        },
+        "liquidx.openCompiledFile": {
+          "type": "boolean",
+          "default": true,
+          "description": "Open the compiled .compiled.liquid file after a successful compile."
+        },
+        "liquidx.showOutputChannel": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show compile logs in the LiquidX output channel."
+        },
+        "liquidx.cliPath": {
+          "type": "string",
+          "default": "",
+          "description": "Optional path to the liquidx CLI binary. Leave empty to use the bundled in-process compiler."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "sync-compiler": "node ./scripts/sync-compiler.cjs",
+    "prepackage": "npm run sync-compiler",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NyashaMadzokere/LiquidX.git",
+    "directory": "vscode-extension"
+  }
+}

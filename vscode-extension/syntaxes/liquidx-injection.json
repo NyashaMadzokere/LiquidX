@@ -1,0 +1,37 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "scopeName": "liquidx.injection",
+  "injectionSelector": "L:text.html.liquid -comment",
+  "patterns": [
+    {
+      "name": "meta.tag.liquidx.lx-if",
+      "begin": "\\{%-?\\s*lx-if\\s+",
+      "end": "-?%\\}",
+      "patterns": [
+        {
+          "name": "keyword.control.liquidx.lx-if",
+          "match": "\\blx-if\\b"
+        },
+        {
+          "name": "string.quoted.double.liquid",
+          "match": "\"[^\"]*\""
+        }
+      ]
+    },
+    {
+      "name": "meta.tag.liquidx.map-assign",
+      "begin": "\\{%-?\\s*assign\\s+\\w+\\s*=\\s*\\{",
+      "end": "\\}\\s*-?%\\}",
+      "patterns": [
+        {
+          "name": "string.quoted.double.liquid",
+          "match": "\"[^\"]*\""
+        },
+        {
+          "name": "punctuation.separator.key-value.liquid",
+          "match": ":"
+        }
+      ]
+    }
+  ]
+}
