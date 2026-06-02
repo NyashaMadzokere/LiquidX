@@ -1,0 +1,27 @@
+{% assign badgeIcons = { "new": "badge-new.svg", "sale": "badge-sale.svg", "limited": "badge-limited.svg" } %}
+
+<section class="product-card" data-product-id="{{ product.id }}">
+  <h2 class="product-title">{{ product.title }}</h2>
+
+  <p class="stock-message">
+    {% lx-if product.available "In stock - ships today" "Sold out - notify me" %}
+  </p>
+
+  {% if product.tags contains "new" %}
+    <img src="{{ 'badge-new.svg' | asset_url }}" alt="New arrival badge" width="64" height="64">
+  {% elsif product.tags contains "sale" %}
+    <img src="{{ 'badge-sale.svg' | asset_url }}" alt="Sale badge" width="64" height="64">
+  {% elsif product.tags contains "limited" %}
+    <img src="{{ 'badge-limited.svg' | asset_url }}" alt="Limited edition badge" width="64" height="64">
+  {% endif %}
+
+  <p class="price">{{ product.price | money }}</p>
+
+  {% if product.featured_image %}
+    <img
+      src="{{ product.featured_image | image_url: width: 900 }}"
+      alt="{{ product.featured_image.alt | default: product.title | escape }}"
+      loading="lazy"
+    >
+  {% endif %}
+</section>

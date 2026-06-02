@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.compiled.liquid
+*.log
+*.tmp
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

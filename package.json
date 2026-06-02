@@ -1,0 +1,38 @@
+{
+  "name": "liquidx-cli",
+  "version": "1.0.0",
+  "description": "A production-ready CLI for compiling Liquid templates.",
+  "type": "module",
+  "bin": {
+    "liquidx": "./bin/liquidx.js"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "docs",
+    "examples",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "start": "node ./bin/liquidx.js",
+    "example": "node ./bin/liquidx.js ./examples/sample.liquid"
+  },
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "keywords": [
+    "shopify",
+    "liquid",
+    "compiler",
+    "theme-development",
+    "shopify-theme",
+    "cli"
+  ],
+  "author": "Your Name <you@example.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/liquidx-cli.git"
+  },
+  "license": "MIT"
+}
