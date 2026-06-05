@@ -1,4 +1,6 @@
 node_modules/
+vscode-extension/node_modules/
+vscode-extension/*.vsix
 dist/
 *.compiled.liquid
 *.log

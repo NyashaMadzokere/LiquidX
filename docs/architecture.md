@@ -16,3 +16,9 @@
 - Add compiler stages in `lib/compiler.js` (tokenization, transforms, optimization).
 - Add flags in `lib/cli.js` and thread options into `compileLiquid`.
 - Replace storage implementation in `lib/file-system.js` (e.g., in-memory for tests).
+
+## VS Code Extension Layer
+
+- `vscode-extension/src/extension.js` registers commands and save hooks.
+- `vscode-extension/src/compile.js` handles document compile orchestration and output channel logs.
+- `vscode-extension/compiler/` contains a bundled copy of core compiler modules (synced via `npm run sync-compiler`).
