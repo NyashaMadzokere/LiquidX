@@ -1,0 +1,25 @@
+{% comment %}
+  Product badge snippet — map/object syntax for badge asset lookup.
+{% endcomment %}
+
+{% assign badgeAssets = { "new": "badge-new.svg", "sale": "badge-sale.svg", "bestseller": "badge-bestseller.svg", "limited": "badge-limited.svg" } %}
+
+<div class="product-badges">
+  {% for tag in product.tags %}
+    {% if tag == "new" or tag == "sale" or tag == "bestseller" or tag == "limited" %}
+      <span class="product-badges__item" data-badge="{{ tag }}">
+        <img
+          src="{{ badgeAssets[tag] | default: 'badge-default.svg' | asset_url }}"
+          alt="{{ tag | capitalize }} badge"
+          width="48"
+          height="48"
+          loading="lazy"
+        >
+      </span>
+    {% endif %}
+  {% endfor %}
+
+  <p class="product-badges__status">
+    {% lx-if product.available "Available to order" "Currently unavailable" %}
+  </p>
+</div>

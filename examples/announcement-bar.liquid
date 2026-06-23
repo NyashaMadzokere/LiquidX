@@ -1,0 +1,44 @@
+{% comment %}
+  Announcement bar — map for promo copy by campaign key.
+{% endcomment %}
+
+{% assign promoCopy = { "summer": "Summer sale — up to 30% off", "winter": "Winter collection now live", "default": "Free shipping on orders over $50" } %}
+
+{% assign campaign = section.settings.campaign_key | default: "default" %}
+
+<div class="announcement-bar" role="region" aria-label="Store announcement">
+  <p class="announcement-bar__text">
+    {{ promoCopy[campaign] | default: promoCopy.default }}
+  </p>
+
+  {% if section.settings.show_dismiss %}
+    <button type="button" class="announcement-bar__dismiss" aria-label="Dismiss">
+      {% lx-if section.settings.dismiss_label != blank section.settings.dismiss_label "Close" %}
+    </button>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "campaign_key",
+      "label": "Campaign key",
+      "default": "default"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dismiss",
+      "label": "Show dismiss button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "dismiss_label",
+      "label": "Dismiss button label"
+    }
+  ]
+}
+{% endschema %}

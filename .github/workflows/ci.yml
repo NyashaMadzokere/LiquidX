@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install
+        run: npm install
+
+      - name: Unit tests
+        run: npm test
+
+      - name: Compile examples (ensures compiler runs)
+        run: npm run liquidx:compile:examples
+
+      - name: Check examples are up to date
+        run: npm run liquidx:check:examples
+
+      - name: Manual test runner
+        run: node ./test/run.js
+

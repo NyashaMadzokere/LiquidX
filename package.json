@@ -1,7 +1,7 @@
 {
   "name": "liquidx-cli",
-  "version": "1.0.0",
-  "description": "A production-ready CLI for compiling Liquid templates.",
+  "version": "0.1.0",
+  "description": "Modern syntax compiler for Shopify Liquid — compile LiquidX to standard Liquid.",
   "type": "module",
   "bin": {
     "liquidx": "./bin/liquidx.js"
@@ -16,7 +16,10 @@
   ],
   "scripts": {
     "start": "node ./bin/liquidx.js",
-    "example": "node ./bin/liquidx.js ./examples/sample.liquid"
+    "test": "node --test ./test/transforms.test.mjs",
+    "example": "node ./bin/liquidx.js ./examples/sample.liquid",
+    "liquidx:compile:examples": "node ./scripts/liquidx-compile-examples.mjs",
+    "liquidx:check:examples": "node ./scripts/liquidx-check-examples.mjs"
   },
   "engines": {
     "node": ">=18.18.0"
@@ -29,10 +32,14 @@
     "shopify-theme",
     "cli"
   ],
-  "author": "Your Name <you@example.com>",
+  "author": "Nyasha Madzokete",
+  "homepage": "https://github.com/NyashaMadzokere/LiquidX#readme",
+  "bugs": {
+    "url": "https://github.com/NyashaMadzokere/LiquidX/issues"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/liquidx-cli.git"
+    "url": "https://github.com/NyashaMadzokere/LiquidX.git"
   },
   "license": "MIT"
 }

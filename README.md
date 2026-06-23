@@ -2,9 +2,15 @@
   <img src="./logo.png" alt="LiquidX logo" width="180" />
 </p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/version-0.1.0--preview-orange" alt="v0.1 preview" />
+  <img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT license" />
+  <img src="https://img.shields.io/badge/node-%3E%3D18.18.0-green" alt="Node 18+" />
+</p>
+
 # LiquidX CLI
 
-**Modern syntax compiler for Shopify Liquid**
+**Modern syntax compiler for Shopify Liquid** · *v0.1 public preview*
 
 Shopify theme development often means fighting the same Liquid patterns over and over: mapping badge keys to asset filenames, writing tiny `if/else` blocks for stock messages, and watching section files grow harder to read with every feature. Liquid has no native object/map ergonomics and no shorthand for inline conditionals — so teams copy-paste boilerplate or bury logic in long `if` chains.
 
@@ -86,7 +92,18 @@ You keep editing readable source; Shopify only ever sees compiled Liquid.
 
 ## Installation
 
-### Global install (recommended)
+> **v0.1 preview:** CLI is ready for local use and GitHub installs. npm and VS Code Marketplace publishing are documented in [`docs/PUBLISHING.md`](./docs/PUBLISHING.md).
+
+### From source (recommended for now)
+
+```bash
+git clone https://github.com/NyashaMadzokere/LiquidX.git
+cd LiquidX
+npm link
+liquidx ./examples/sample.liquid
+```
+
+### Global install (after npm publish)
 
 ```bash
 npm install -g liquidx-cli
@@ -95,9 +112,20 @@ npm install -g liquidx-cli
 ### Local project usage
 
 ```bash
-npm install
 node ./bin/liquidx.js ./examples/sample.liquid
 ```
+
+### VS Code extension
+
+Install from VSIX while Marketplace listing is pending:
+
+```bash
+code --install-extension ./vscode-extension/liquidx-0.1.0.vsix
+```
+
+Or run in dev mode: open repo in VS Code → press **F5**.
+
+See [`vscode-extension/README.md`](./vscode-extension/README.md) and [`docs/PUBLISHING.md`](./docs/PUBLISHING.md).
 
 ---
 
@@ -334,6 +362,12 @@ Architecture overview:
 npm install
 ```
 
+### Run tests
+
+```bash
+npm test
+```
+
 ### Run manual validation
 
 ```bash
@@ -402,9 +436,18 @@ See `vscode-extension/README.md` for full extension docs.
 
 ## Roadmap
 
+LiquidX is in **v0.1 public preview**. Full phased plan: [`ROADMAP.md`](./ROADMAP.md)
+
+**Next up (v0.2):**
+- `liquidx --check` and `--json` modes
+- Batch compile + watch mode
+- VS Code diagnostics and diff view
+- GitHub Actions CI on every PR
+
+**Later:**
 - AST parser upgrade
 - Shopify CLI integration
-- Publish LiquidX extension to VS Code Marketplace
+- VS Code Marketplace publish
 
 ---
 

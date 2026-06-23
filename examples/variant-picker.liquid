@@ -1,0 +1,28 @@
+{% comment %}
+  Variant picker — map syntax for size guide labels + lx-if for stock text.
+{% endcomment %}
+
+{% assign sizeGuideLabels = { "xs": "Extra Small", "s": "Small", "m": "Medium", "l": "Large", "xl": "Extra Large" } %}
+
+<div class="variant-picker" data-product-id="{{ product.id }}">
+  <fieldset class="variant-picker__fieldset">
+    <legend>Select size</legend>
+
+    {% for variant in product.variants %}
+      <label class="variant-picker__option">
+        <input
+          type="radio"
+          name="variant"
+          value="{{ variant.id }}"
+          {% unless variant.available %}disabled{% endunless %}
+        >
+        <span class="variant-picker__label">
+          {{ sizeGuideLabels[variant.option1 | downcase] | default: variant.option1 }}
+        </span>
+        <span class="variant-picker__stock">
+          {% lx-if variant.available "In stock" "Out of stock" %}
+        </span>
+      </label>
+    {% endfor %}
+  </fieldset>
+</div>

@@ -1,0 +1,32 @@
+{% comment %}
+  Cart drawer snippet — demonstrates lx-if for inline shipping messaging.
+{% endcomment %}
+
+<div class="cart-drawer" id="cart-drawer">
+  <h2>Your cart</h2>
+
+  {% if cart.item_count > 0 %}
+    <ul class="cart-drawer__items">
+      {% for item in cart.items %}
+        <li class="cart-drawer__item">
+          <span class="cart-drawer__title">{{ item.product.title }}</span>
+          <span class="cart-drawer__qty">× {{ item.quantity }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <p class="cart-drawer__subtotal">
+      Subtotal: {{ cart.total_price | money }}
+    </p>
+
+    <p class="cart-drawer__shipping-note">
+      {% lx-if cart.total_price >= 5000 "You've unlocked free shipping!" "Add {{ 5000 | minus: cart.total_price | money }} more for free shipping" %}
+    </p>
+
+    <a href="{{ routes.cart_url }}" class="cart-drawer__checkout button">
+      Checkout
+    </a>
+  {% else %}
+    <p class="cart-drawer__empty">Your cart is empty.</p>
+  {% endif %}
+</div>

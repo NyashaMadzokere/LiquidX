@@ -1,0 +1,22 @@
+{% comment %}
+  Collection card — lx-if for empty vs populated collection states.
+{% endcomment %}
+
+<article class="collection-card">
+  <a href="{{ collection.url }}" class="collection-card__link">
+    {% if collection.image %}
+      <img
+        src="{{ collection.image | image_url: width: 600 }}"
+        alt="{{ collection.image.alt | default: collection.title | escape }}"
+        class="collection-card__image"
+        loading="lazy"
+      >
+    {% endif %}
+
+    <h3 class="collection-card__title">{{ collection.title }}</h3>
+
+    <p class="collection-card__count">
+      {% lx-if collection.products_count > 0 "{{ collection.products_count }} products" "Coming soon" %}
+    </p>
+  </a>
+</article>
